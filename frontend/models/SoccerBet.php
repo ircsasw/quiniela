@@ -12,7 +12,7 @@ use Yii;
  * @property string $date
  * @property int $total_points
  */
-class Soccer_Bet extends \yii\db\ActiveRecord
+class SoccerBet extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -41,9 +41,9 @@ class Soccer_Bet extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'Usuario'),
-            'date' => Yii::t('app', 'Fecha'),
-            'total_points' => Yii::t('app', 'Total de puntos'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'date' => Yii::t('app', 'Date'),
+            'total_points' => Yii::t('app', 'Total Points'),
         ];
     }
 }
