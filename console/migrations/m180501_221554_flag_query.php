@@ -12,7 +12,7 @@ class m180501_221554_flag_query extends Migration
      */
     public function safeUp()
     {
-        $this->execute(file_get_contents(Yii::getAlias('console/migrations/sql/m180427_221554.sql')));
+        $this->execute(file_get_contents(Yii::getAlias('console/migrations/sql/m180501_221554.sql')));
     }
 
     /**
