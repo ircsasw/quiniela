@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Teams;
 
 /**
  * Site controller
@@ -72,7 +73,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $team = Teams::findOne(22);
+        return $this->render('index', ['team' => $team]);
     }
 
     /**
