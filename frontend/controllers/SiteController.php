@@ -73,8 +73,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $team = Teams::findOne(22);
-        return $this->render('index', ['team' => $team]);
+        return $this->render('index');
     }
 
     /**
