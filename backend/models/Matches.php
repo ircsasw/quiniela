@@ -46,13 +46,13 @@ class Matches extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'date' => Yii::t('app', 'Date'),
-            'round' => Yii::t('app', 'Round'),
-            'team_a_id' => Yii::t('app', 'Team A ID'),
-            'score_a' => Yii::t('app', 'Score A'),
-            'team_b_id' => Yii::t('app', 'Team B ID'),
-            'score_b' => Yii::t('app', 'Score B'),
-            'notes' => Yii::t('app', 'Notes'),
+            'date' => Yii::t('app', 'Fecha'),
+            'round' => Yii::t('app', 'Ronda'),
+            'team_a_id' => Yii::t('app', 'Equipo A ID'),
+            'score_a' => Yii::t('app', 'Puntaje A'),
+            'team_b_id' => Yii::t('app', 'Equipo B ID'),
+            'score_b' => Yii::t('app', 'Puntaje B'),
+            'notes' => Yii::t('app', 'Notas'),
         ];
     }
 }
