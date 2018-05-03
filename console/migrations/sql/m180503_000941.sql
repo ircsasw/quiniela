@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD COLUMN `role` INT(6) NULL DEFAULT '10' AFTER `updated_at`;
