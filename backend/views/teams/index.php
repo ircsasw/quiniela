@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\search\SoccerBetSearch */
+/* @var $searchModel backend\models\TeamsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Soccer Bets');
+$this->title = 'Teams';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="soccer-bet-index">
+<div class="teams-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Soccer Bet'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Teams', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,8 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'date',
-            'total_points',
+            'name',
+            'group',
+            'shortcut',
+            'flagimg:raw',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

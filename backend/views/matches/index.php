@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\search\SoccerBetSearch */
+/* @var $searchModel backend\models\MatchesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Soccer Bets');
+$this->title = 'Matches';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="soccer-bet-index">
+<div class="matches-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Soccer Bet'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Matches', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,7 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'date',
-            'total_points',
+            'round',
+            /*[
+                'attribute' => 'team_a_id',
+                'value' => 'teamNameA.flagimg',
+                'format' => 'raw'
+            ],*/
+            'teamNameA.name',
+            'score_a',
+            'teamNameB.name',
+            'score_b',
+            //'notes:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

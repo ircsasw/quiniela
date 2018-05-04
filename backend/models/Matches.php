@@ -55,4 +55,14 @@ class Matches extends \yii\db\ActiveRecord
             'notes' => Yii::t('app', 'Notas'),
         ];
     }
+
+    public function getTeamNameA()
+    {
+        return $this->hasOne(Teams::className(), ['id' => 'team_a_id']);
+    }
+
+    public function getTeamNameB()
+    {
+        return $this->hasOne(Teams::className(), ['id' => 'team_b_id']);
+    }
 }

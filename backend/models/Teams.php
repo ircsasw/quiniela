@@ -49,4 +49,9 @@ class Teams extends \yii\db\ActiveRecord
             'flag' => Yii::t('app', 'Bandera'),
         ];
     }
+
+    public function getFlagimg()
+    {
+        return '<img src="' . $this->flag . '" width="40" />';
+    }
 }

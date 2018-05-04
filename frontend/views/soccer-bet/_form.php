@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
     <?= $form->field($model, 'date')->textInput() ?>
 
     <?= $form->field($model, 'total_points')->textInput() ?>

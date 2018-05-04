@@ -1,0 +1,1 @@
+ALTER TABLE `user` CHANGE COLUMN `status` `status` SMALLINT(6) NOT NULL DEFAULT '5' ;
