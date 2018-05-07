@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use common\models\User;
 
@@ -54,5 +55,14 @@ class SignupForm extends Model
         $user->generateAuthKey();
 
         return $user->save() ? $user : null;
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('app', 'Usuario'),
+            'email' => Yii::t('app', 'Fecha'),
+            'password' => Yii::t('app', 'Contraseña'),
+        ];
     }
 }
