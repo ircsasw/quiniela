@@ -16,7 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Crear una quiniela'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear una quiniela', ['create'], [
+            'class' => 'btn btn-success',
+            'data' => [
+                'confirm' => '¿Desea crear nueva quiniela?',
+                'method' => 'post',
+            ],
+        ]) ?>
     </p>
 
     <?= GridView::widget([
