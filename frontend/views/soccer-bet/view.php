@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Eliminar'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -30,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
+            'user.username',
             'date',
             'total_points',
         ],
@@ -42,14 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            ///'id' => Yii::t('app','Id de la quiniela'),
             'soccer_bet_id',
             'match_id',
             'score_a',
             'score_b',
-            //'points',
+            'points',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ///['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

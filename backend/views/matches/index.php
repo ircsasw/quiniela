@@ -37,7 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'teamNameB.name',
             'score_b',
             //'notes:ntext',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

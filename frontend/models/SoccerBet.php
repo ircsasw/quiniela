@@ -3,7 +3,7 @@
 namespace frontend\models;
 
 use Yii;
-
+use common\models\User;
 /**
  * This is the model class for table "soccer_bet".
  *
@@ -41,9 +41,13 @@ class SoccerBet extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'date' => Yii::t('app', 'Date'),
-            'total_points' => Yii::t('app', 'Total Points'),
+            'User.name' => Yii::t('app', 'ID del usuario'),
+            'date' => Yii::t('app', 'Fecha'),
+            'total_points' => Yii::t('app', 'Puntaje total'),
         ];
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }
