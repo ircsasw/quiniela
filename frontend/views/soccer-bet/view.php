@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SoccerBet */
@@ -38,17 +38,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            ///'id' => Yii::t('app','Id de la quiniela'),
             'soccer_bet_id',
             'match_id',
-            'score_a',
-            'score_b',
-            'points',
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'score_a',
+                'value' => function($model){
+                    return $model->score_a;
+                }
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'score_b',
+                'value' => function($model){
 
-            ///['class' => 'yii\grid\ActionColumn'],
+                }
+            ],
+            'points',
         ],
     ]); ?>
 
