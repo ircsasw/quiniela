@@ -16,6 +16,9 @@ return [
     'sourceLanguage' => 'es-MX',
     'bootstrap' => [
         'log'],
+         'aliases' => [
+        '@logo' =>'/frontend/assets/',
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',

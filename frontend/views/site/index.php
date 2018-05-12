@@ -16,7 +16,7 @@ $this->title = 'My Yii Application';
         <p class="lead">Regístrate o inicia sesión para participar.</p>
 
         <p>
-            <?= Html::a(Yii::t('app', 'Registrar'), ['/site/signup'], ['class' => 'btn btn-lg btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Registrarme'), ['/site/signup'], ['class' => 'btn btn-lg btn-primary']) ?>
             <?= Html::a(Yii::t('app', 'Entrar'), ['/site/login'], ['class' => 'btn btn-lg btn-success']) ?>
         </p>
     </div>

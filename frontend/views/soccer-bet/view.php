@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'score_b',
                 'value' => function($model){
-
+                    return $model->score_b;
                 }
             ],
             'points',
