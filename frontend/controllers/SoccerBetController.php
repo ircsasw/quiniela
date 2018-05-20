@@ -61,23 +61,6 @@ class SoccerBetController extends Controller
         $searchModel->soccer_bet_id = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        //Editable column
-        if(Yii::$app->request->post('hasEditable'))
-        {
-            $bet = Yii::$app->request->post('editableKey');
-            $model = Bet::findOne($bet);
-            $post = [];
-            $posted = current($_POST['Bet']);
-            $post['Bet'] = $posted;
-            if (isset($_POST['Bet']))
-            {
-
-            }
-
-            echo $out;
-            return;
-        }
-
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
