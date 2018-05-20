@@ -41,22 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'pjax' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'soccer_bet_id',
             'match_id',
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'score_a',
-                'value' => function($model){
-                    return $model->score_a;
-                }
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'score_b',
-                'value' => function($model){
-                    return $model->score_b;
-                }
-            ],
+            'score_a',
+            'score_b',
             'points',
         ],
     ]); ?>
