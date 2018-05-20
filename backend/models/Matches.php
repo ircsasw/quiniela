@@ -65,4 +65,17 @@ class Matches extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teams::className(), ['id' => 'team_b_id']);
     }
+
+    public function getMatchRaw()
+    {
+        $match  = '<div class="row"><div class="col-lg-5 text-right">';
+        $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
+        $match .= '</div><div class="col-lg-2 text-center">';
+        $match .= ' ' . date("H:i", strtotime($this->date)) . ' ';
+        $match .= '</div><div class="col-lg-5 text-left">';
+        $match .= $this->teamNameB->flagImg . ' ' . $this->teamNameB->name;
+        $match .= '</div></div>';
+
+        return $match;
+    }
 }

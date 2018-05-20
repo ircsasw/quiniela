@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use backend\models\Matches;
 
 /**
  * This is the model class for table "bet".
@@ -48,5 +49,10 @@ class Bet extends \yii\db\ActiveRecord
             'score_b' => Yii::t('app', 'Marcador B'),
             'points' => Yii::t('app', 'Puntaje'),
         ];
+    }
+
+    public function getMatch()
+    {
+        return $this->hasOne(Matches::className(), ['id' => 'match_id']);
     }
 }
