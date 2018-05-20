@@ -73,7 +73,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-       <p class="pull-right">Desarrollado por <a href="http://www.ircsasoftware.com.mx">IRCSA Software</a></p>
+        <p class="pull-right">Desarrollado por <a href="http://www.ircsasoftware.com.mx">IRCSA Software</a></p>
     </div>
 </footer>
 
