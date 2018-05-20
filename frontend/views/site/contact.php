@@ -19,8 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="col-sm-5">
       <h3 style="font-family: verdana;">¡Hagamos grandes cosas juntos!</h3>
-      <h3><span class="glyphicon glyphicon-phone"></span> +52 (998) 9898457</h3>
-      <h3><span class="glyphicon glyphicon-envelope"></span> info@ircsasoftware.com.mx</h3> 
+      <h3><span class="glyphicon glyphicon-envelope"></span> info@ircsasoftware.com.mx</h3>
     </div>
     <div class="col-sm-7">
       <div class="row">
@@ -46,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                         <?php ActiveForm::end(); ?>
             </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>

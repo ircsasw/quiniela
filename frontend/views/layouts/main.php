@@ -44,7 +44,12 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Registrar', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'Mis quinielas', 'url' => ['/soccer-bet/index']];
+        $menuItems = [
+            ['label' => 'Inicio', 'url' => ['/site/index']],
+            ['label' => 'Mis quinielas', 'url' => ['/soccer-bet/index']],
+            ['label' => 'Acerca de', 'url' => ['/site/about']],
+            ['label' => 'Contacto', 'url' => ['/site/contact']],
+        ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

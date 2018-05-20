@@ -40,8 +40,8 @@ class SoccerBet extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'User.name' => Yii::t('app', 'ID del usuario'),
+            'id' => Yii::t('app', 'Folio'),
+            'User.name' => Yii::t('app', 'Usuario'),
             'date' => Yii::t('app', 'Fecha'),
             'total_points' => Yii::t('app', 'Puntaje total'),
         ];

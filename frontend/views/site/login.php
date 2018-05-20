@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = 'Entrar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    Si olvidaste tu contraseña puedes <?= Html::a('restaurarla', ['site/request-password-reset']) ?>.
+                    Si olvidaste tu contraseña puedes <?= Html::a('pedir ayuda', ['site/contact']) ?>.
                 </div>
 
                 <div class="form-group">

@@ -7,13 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\search\SoccerBetSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Quinielas');
+$this->title = Yii::t('app', 'Mis quinielas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="soccer-bet-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Crear una quiniela', ['create'], [
@@ -35,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'total_points',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template'=>'{view}',       
+                'template'=>'{view}',
             ],
         ],
     ]); ?>

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Quiniela World Cup';
 ?>
 <div class="site-index">
 
@@ -15,8 +15,8 @@ $this->title = 'My Yii Application';
 
         <p class="lead">Regístrate o inicia sesión para participar.</p>
 
-        <p>
-            <?= Html::a(Yii::t('app', 'Registrarme'), ['/site/signup'], ['class' => 'btn btn-lg btn-primary']) ?>
+        <p class="btn-group">
+            <?= Html::a(Yii::t('app', 'Registro'), ['/site/signup'], ['class' => 'btn btn-lg btn-primary']) ?>
             <?= Html::a(Yii::t('app', 'Entrar'), ['/site/login'], ['class' => 'btn btn-lg btn-success']) ?>
         </p>
     </div>
