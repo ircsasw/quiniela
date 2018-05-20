@@ -71,8 +71,8 @@ class SoccerBetController extends Controller
             $post['Bet'] = $posted;
             if (isset($_POST['Bet']))
             {
-                
-            }           
+
+            }
 
             echo $out;
             return;
@@ -118,8 +118,13 @@ class SoccerBetController extends Controller
                 $transaction->commit();
 
                 return $this->redirect(['view', 'id'=>$model->id]);
-            } else
-                var_dump("error");die();
+            } else {
+                $transaction->rollBack();
+
+                \Yii::$app->session->setFlash('error', 'Error al crear la quiniela.');
+                //var_dump("error");die();
+                return $this->redirect(['site/index']);
+            }
         } catch (Exception $e) {
             $transaction->rollBack();
         }
