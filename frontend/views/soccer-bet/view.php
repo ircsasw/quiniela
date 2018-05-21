@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $model frontend\models\SoccerBet */
 
 $this->title = 'Folio: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Quinielas'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mis quinielas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="soccer-bet-view">
@@ -31,10 +31,22 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-9">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'responsiveWrap' => false,
                 //'filterModel' => $searchModel,
                 'pjax' => true,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'class' => 'kartik\grid\EditableColumn',
+                        'attribute' => 'score_a',
+                        'editableOptions' => [
+                            'inputType' => \kartik\editable\Editable::INPUT_SPIN,
+                            'options' => ['pluginOptions' => ['min' => 0, 'max' => 50]]
+                        ],
+                        'hAlign' => 'right',
+                        'vAlign' => 'middle',
+                        'width' => '100px',
+                    ],
                     [
                         'attribute' => 'match_id',
                         'value' => 'match.matchRaw',
@@ -42,17 +54,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => 'kartik\grid\EditableColumn',
-                        'attribute' => 'score_a',
-                        'value' => function($model) {
-                            return $model->score_a;
-                        }
-                    ],
-                    [
-                        'class' => 'kartik\grid\EditableColumn',
                         'attribute' => 'score_b',
-                        'value' => function($model) {
-                            return $model->score_b;
-                        }
+                        'editableOptions' => [
+                            'inputType' => \kartik\editable\Editable::INPUT_SPIN,
+                            'options' => ['pluginOptions' => ['min' => 0, 'max' => 50]]
+                        ],
+                        'hAlign' => 'left',
+                        'vAlign' => 'middle',
+                        'width' => '100px',
                     ],
                     'points',
                 ],

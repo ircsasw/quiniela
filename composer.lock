@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "617685ec196b76e2739fe09db48a0d80",
+    "content-hash": "ee8c9313972722bd617e517d662f56e7",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -656,6 +656,56 @@
                 "popover-x"
             ],
             "time": "2017-09-08T04:30:42+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-touchspin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-touchspin.git",
+                "reference": "ba819f8883873fc9e375a05907dfdc1d3d0f3dcd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-touchspin/zipball/ba819f8883873fc9e375a05907dfdc1d3d0f3dcd",
+                "reference": "ba819f8883873fc9e375a05907dfdc1d3d0f3dcd",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\touchspin\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper widget for the Bootstrap Switch plugin to use checkboxes & radios as toggle touchspines (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-touchspin",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "spinner",
+                "touch",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-02-07T11:46:17+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
