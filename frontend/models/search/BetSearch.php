@@ -43,7 +43,6 @@ class BetSearch extends Bet
         $query = Bet::find();
 
         // add conditions that should always apply here
-        $query->where(['<=', 'id', 48]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

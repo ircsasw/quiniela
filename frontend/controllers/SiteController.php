@@ -7,13 +7,13 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\models\MatchesSearch;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Teams;
-use frontend\models\search\BetSearch;
 
 /**
  * Site controller
@@ -74,7 +74,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new BetSearch();
+        $searchModel = new MatchesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

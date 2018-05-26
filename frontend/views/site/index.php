@@ -47,7 +47,7 @@ $this->title = 'Quiniela World Cup';
                     ['class' => 'yii\grid\SerialColumn'],
                     [
                         'attribute' => 'match_id',
-                        'value' => 'match.matchResultRaw',
+                        'value' => 'matchResultRaw',
                         'format' => 'raw'
                     ],
                 ],
