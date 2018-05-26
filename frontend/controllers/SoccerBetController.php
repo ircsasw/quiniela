@@ -8,6 +8,7 @@ use frontend\models\search\SoccerBetSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use frontend\models\Bet;
 use frontend\models\search\BetSearch;
 use backend\models\Matches;
@@ -24,6 +25,22 @@ class SoccerBetController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'signup'],
+                'rules' => [
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -34,13 +51,28 @@ class SoccerBetController extends Controller
     }
 
     /**
+     * Lists User SoccerBet models.
+     * @return mixed
+     */
+    public function actionMybets()
+    {
+        $searchModel = new SoccerBetSearch();
+        $searchModel->user_id = Yii::$app->user->identity->id;  // sólo las quinielas de usuario logeado
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('mybets', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Lists all SoccerBet models.
      * @return mixed
      */
     public function actionIndex()
     {
         $searchModel = new SoccerBetSearch();
-        $searchModel->user_id = Yii::$app->user->identity->id;  // sólo las quinielas de usuario logeado
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

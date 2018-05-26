@@ -13,6 +13,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Teams;
+use frontend\models\search\BetSearch;
 
 /**
  * Site controller
@@ -73,7 +74,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new BetSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
@@ -152,7 +159,18 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                \Yii::$app->session->setFlash('success', 'Registrado correctamente. Espere a ser activado.');
+                $mailer = Yii::$app->mailer->compose();
+
+                $mailer->setFrom('quiniela@recursoscomputacionales.com');
+                $mailer->setTo('arturo@ircsasoftware.com.mx');
+                $mailer->setSubject('Usuario nuevo');
+                $mailer->setHtmlBody('Nuevo usuario en la quiniela: ' . $model->username);
+
+                if ($mailer->send())
+                    \Yii::$app->session->setFlash('success', 'Registrado correctamente. Espere a ser activado.');
+                else
+                    \Yii::$app->session->setFlash('success', 'Registrado correctamente. Contacte al administrador.');
+
                 return $this->goHome();
             }
         }

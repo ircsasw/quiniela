@@ -42,6 +42,7 @@ class SoccerBet extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Folio'),
             'User.name' => Yii::t('app', 'Usuario'),
+            'user' => Yii::t('app', 'Usuario'),
             'date' => Yii::t('app', 'Fecha'),
             'total_points' => Yii::t('app', 'Puntaje total'),
         ];

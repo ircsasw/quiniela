@@ -12,6 +12,8 @@ use frontend\models\SoccerBet;
  */
 class SoccerBetSearch extends SoccerBet
 {
+    public $user;
+
     /**
      * {@inheritdoc}
      */
@@ -19,7 +21,7 @@ class SoccerBetSearch extends SoccerBet
     {
         return [
             [['id', 'user_id', 'total_points'], 'integer'],
-            [['date'], 'safe'],
+            [['date', 'user'], 'safe'],
         ];
     }
 
@@ -44,6 +46,7 @@ class SoccerBetSearch extends SoccerBet
         $query = SoccerBet::find();
 
         // add conditions that should always apply here
+        $query->joinWith(['user']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,13 +60,18 @@ class SoccerBetSearch extends SoccerBet
             return $dataProvider;
         }
 
+        $dataProvider->sort->attributes['user'] = [
+            'asc' => ['user.username' => SORT_ASC],
+            'desc' => ['user.username' => SORT_DESC],
+        ];
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
             'date' => $this->date,
             'total_points' => $this->total_points,
-        ]);
+        ])->andFilterWhere(['like', 'user.username', $this->user]);
 
         return $dataProvider;
     }
