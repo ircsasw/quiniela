@@ -80,10 +80,10 @@ $this->title = 'Quiniela World Cup';
                 <p>La forma de determinar cuántos puntos gana cada quien es la siguiente:</p>
                 <ul>
                     <li class="text-primary">
-                        El que acierte el marcador recibe <span class="badge badge-primary badge-pill">5</span> puntos
+                        El que acierte al marcador recibe <span class="badge badge-primary badge-pill">5</span> puntos
                     </li>
                     <li class="text-primary">
-                        El que acierte el resultado pero no el marcado se lleva <span class="badge badge-primary badge-pill">3</span> puntos
+                        El que acierte al resultado pero no al marcado se lleva <span class="badge badge-primary badge-pill">3</span> puntos
                     </li>
                     <li class="text-primary">El que no acierta nada no se lleva nada</li>
                 </ul>
