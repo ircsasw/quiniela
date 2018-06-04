@@ -68,11 +68,26 @@ class Matches extends \yii\db\ActiveRecord
 
     public function getMatchRaw()
     {
-        $match  = '<div class="row"><div class="col-lg-5 text-right">';
+        $match  = '<div class="row"><div class="col-sm-5 col-xs-12 text-right-not-xs">';
         $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
-        $match .= '</div><div class="col-lg-2 text-center">';
+        $match .= '</div><div class="col-sm-2 col-xs-12 text-center-not-xs">';
         $match .= ' ' . date("H:i", strtotime($this->date)) . ' ';
-        $match .= '</div><div class="col-lg-5 text-left">';
+        $match .= '</div><div class="col-sm-5 col-xs-12 text-left-not-xs">';
+        $match .= $this->teamNameB->flagImg . ' ' . $this->teamNameB->name;
+        $match .= '</div></div>';
+
+        return $match;
+    }
+
+    public function getMatchResultRaw()
+    {
+        $match  = '<div class="row"><div class="col-xs-5 text-right">';
+        $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
+        $match .= ' - <span class="badge badge-primary badge-pill">' . $this->score_a . '</span>';
+        $match .= '</div><div class="col-xs-2 text-center">';
+        $match .= ' ' . date("H:i", strtotime($this->date)) . ' ';
+        $match .= '</div><div class="col-xs-5 text-left">';
+        $match .= ' <span class="badge badge-primary badge-pill">' . $this->score_b . '</span> - ';
         $match .= $this->teamNameB->flagImg . ' ' . $this->teamNameB->name;
         $match .= '</div></div>';
 

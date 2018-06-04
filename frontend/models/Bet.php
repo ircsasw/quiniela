@@ -45,8 +45,8 @@ class Bet extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'soccer_bet_id' => Yii::t('app', 'Quiniela'),
             'match_id' => Yii::t('app', 'Partido'),
-            'score_a' => Yii::t('app', 'Marcador A'),
-            'score_b' => Yii::t('app', 'Marcador B'),
+            'score_a' => Yii::t('app', 'Marcador'),
+            'score_b' => Yii::t('app', 'Marcador'),
             'points' => Yii::t('app', 'Puntaje'),
         ];
     }

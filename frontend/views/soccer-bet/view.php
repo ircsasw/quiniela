@@ -46,12 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'hAlign' => 'right',
                         'vAlign' => 'middle',
-                        'width' => '100px',
+                        'width' => '60px',
                     ],
                     [
                         'attribute' => 'match_id',
                         'value' => 'match.matchRaw',
-                        'format' => 'raw'
+                        'format' => 'raw',
                     ],
                     [
                         'class' => 'kartik\grid\EditableColumn',
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'hAlign' => 'left',
                         'vAlign' => 'middle',
-                        'width' => '100px',
+                        'width' => '60px',
                     ],
                     'points',
                 ],

@@ -46,7 +46,8 @@ AppAsset::register($this);
     } else {
         $menuItems = [
             ['label' => 'Inicio', 'url' => ['/site/index']],
-            ['label' => 'Mis quinielas', 'url' => ['/soccer-bet/index']],
+            ['label' => 'Mis quinielas', 'url' => ['/soccer-bet/mybets']],
+            ['label' => 'Quinielas', 'url' => ['/soccer-bet/index']],
             ['label' => 'Acerca de', 'url' => ['/site/about']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],
         ];
