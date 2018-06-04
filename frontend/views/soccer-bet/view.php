@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
 
         </div>
+
         <div class="col-lg-9">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
