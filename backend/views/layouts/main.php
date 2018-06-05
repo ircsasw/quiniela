@@ -45,6 +45,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Usuarios', 'url' => ['/user/index']];
         $menuItems[] = ['label' => 'Equipos', 'url' => ['/teams/index']];
         $menuItems[] = ['label' => 'Partidos', 'url' => ['/matches/index']];
+        $menuItems[] = ['label' => 'Quinielas', 'url' => ['/soccer-bet/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
