@@ -3,11 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Matches;
+use backend\models\Matches; ///Incluyo el archivo del modelo
 use backend\models\MatchesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Bet;
 
 /**
  * MatchesController implements the CRUD actions for Matches model.
@@ -85,14 +86,38 @@ class MatchesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+       
+        // SELECT * FROM bet;
+        $bets = Bet::find()
+        ->where(['match_id' => $id])
+        ->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            foreach($bets as $bet){
+                $bet->points = 0;
+                if(($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)){
+                    $bet->points = 5;
+                }
+                else if(($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b) || (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a))){
+                    $bet->points = 3;
+                }
+            }
+            
+            if($model->save())
+            {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else{
+                print_r($model->getErrors());
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+
+
+        //Estructura para recorrer cada apuesta dentro de un ciclo y evaluarlas
     }
 
     /**

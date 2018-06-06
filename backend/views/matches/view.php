@@ -38,5 +38,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'notes:ntext',
         ],
     ]) ?>
-
 </div>
