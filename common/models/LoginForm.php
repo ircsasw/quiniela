@@ -64,11 +64,12 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
+        if ($this->validate() && $this->getUser()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        }else{
+            $this->addError('password', Yii::t('app', 'No tiene acceso a esta sección'));
+            return false;
         }
-
-        return false;
     }
 
      public function loginAdmin()
@@ -81,7 +82,6 @@ class LoginForm extends Model
             return false;
         }
     }
-
 
     /**
      * Finds user by [[username]]

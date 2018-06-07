@@ -87,30 +87,43 @@ class MatchesController extends Controller
     {
         $model = $this->findModel($id);
        
-        // SELECT * FROM bet;
-        $bets = Bet::find()
-        ->where(['match_id' => $id])
-        ->all();
-
         if ($model->load(Yii::$app->request->post())) {
-            foreach($bets as $bet){
-                $bet->points = 0;
-                if(($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)){
-                    $bet->points = 5;
-                }
-                else {
-                    if((($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) || (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a))){
-                        $bet->points = 3;
+            // SELECT * FROM bet WHERE "match_id" = $id;
+            $bets = Bet::find()
+            ->where(['match_id' => $id])
+            ->all();
+
+            $transaction = \Yii::$app->db->beginTransaction();
+            try {
+                foreach ($bets as $bet) {
+                    $bet->points = 0;
+                    if(($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)){
+                        $bet->points = 5;
                     }
+                    else {
+                        if((($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) || (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a))){
+                            $bet->points = 3;
+                        }
+                    }
+                    if (!($flag = $bet->save())) break;
                 }
-                $flag = $bet->save();
-            }
-            
-             if($model->save() && $flag){ 
-                 return $this->redirect(['view', 'id' => $model->id]);
-            }
-            else{
-                 print_r($model->getErrors());
+                
+                if ($model->save() && $flag) { 
+                    $transaction->commit();
+
+                    // correr el update
+                    $totalPoints = Yii::$app->db->createCommand('
+                        UPDATE soccer_bet AS sb SET sb.total_points = (
+                        SELECT SUM(b.points) FROM bet AS b WHERE b.soccer_bet_id = sb.id)
+                    ')->execute();
+                    
+                    return $this->redirect(['index']);
+                } else {
+                    $transaction->rollBack();
+                    print_r($model->getErrors());
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
             }
         }
 
