@@ -98,26 +98,26 @@ class MatchesController extends Controller
                 if(($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)){
                     $bet->points = 5;
                 }
-                else if(($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b) || (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a))){
-                    $bet->points = 3;
+                else {
+                    if((($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) || (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a))){
+                        $bet->points = 3;
+                    }
                 }
+                $flag = $bet->save();
             }
             
-            if($model->save())
-            {
-                return $this->redirect(['view', 'id' => $model->id]);
+             if($model->save() && $flag){ 
+                 return $this->redirect(['view', 'id' => $model->id]);
             }
             else{
-                print_r($model->getErrors());
+                 print_r($model->getErrors());
             }
         }
+
 
         return $this->render('update', [
             'model' => $model,
         ]);
-
-
-        //Estructura para recorrer cada apuesta dentro de un ciclo y evaluarlas
     }
 
     /**
