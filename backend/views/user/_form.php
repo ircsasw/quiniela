@@ -10,16 +10,24 @@ use yii\widgets\ActiveForm;
 
 <div class="user-form">
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?php
+	    $form = ActiveForm::begin();
+	    $options = [ 5 => 'Inactivo', 10 => 'Activo'];
+    ?>
+    <?=  $form->field($model, 'status')
+        ->dropDownList(
+        	$options,
+            ['prompt'=>'Seleccione uno']    // options
+        );
+	?>
 
     <?= $form->field($model, 'role')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
+  	
     <?php ActiveForm::end(); ?>
 
 </div>

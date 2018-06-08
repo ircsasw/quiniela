@@ -14,6 +14,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Teams;
+use frontend\models\SoccerBet;
 
 /**
  * Site controller
@@ -69,17 +70,20 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
-     *
+     * 
      * @return mixed
      */
     public function actionIndex()
     {
         $searchModel = new MatchesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
+        $soccerBets = new SoccerBet();
+        $topFiveBets = $soccerBets->getTopFiveBets();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'topFiveBets' => $topFiveBets,
         ]);
     }
 

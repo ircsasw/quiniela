@@ -51,4 +51,16 @@ class SoccerBet extends \yii\db\ActiveRecord
     public function getUser(){
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    /**
+    * Find the the top five bets on soccer_bet table of quinielas database and render the result at index.
+    * SELECT * FROM soccer_bet ORDER BY total_points DESC LIMIT 5;
+    * @return mixed
+    */   
+    public function getTopFiveBets(){
+       return $this->find()
+        ->orderBy('total_points DESC')
+        ->limit(5)
+        ->all();
+    }
 }

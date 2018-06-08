@@ -57,22 +57,12 @@ $this->title = 'Quiniela World Cup';
         <div class="col-lg-5">
             <h2>Puntajes más altos</h2>
             <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    El primero, podrías ser tu...
-                    <span class="badge badge-primary badge-pill">20</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    El segundo usuario más alto...
-                    <span class="badge badge-primary badge-pill">10</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    El tercero pero no menos importante...
-                    <span class="badge badge-primary badge-pill">5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Otros más...
-                    <span class="badge badge-primary badge-pill">5</span>
-                </li>
+                <?php 
+                    foreach ($topFiveBets as $topFiveBet) { 
+                        echo "<li class='list-group-item d-flex justify-content-between 
+                        align-items-center'>".$topFiveBet->user->username." --   <i> Quiniela no.: ".$topFiveBet->id ."</i> <span class='badge badge-primary badge-pill'>".$topFiveBet->total_points."</span> </li>";
+                    }
+                ?>
             </ul>
         </div>
         <div class="reglas col-lg-5">
