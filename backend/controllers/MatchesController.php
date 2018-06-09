@@ -86,7 +86,7 @@ class MatchesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-       
+
         if ($model->load(Yii::$app->request->post())) {
             // SELECT * FROM bet WHERE "match_id" = $id;
             $bets = Bet::find()
@@ -97,18 +97,19 @@ class MatchesController extends Controller
             try {
                 foreach ($bets as $bet) {
                     $bet->points = 0;
-                    if(($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)){
+                    if (($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)) {
                         $bet->points = 5;
-                    }
-                    else {
-                        if((($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) || (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a))){
+                    } else {
+                        if ( (($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) ||
+                             (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a)) ||
+                             (($model->score_a == $model->score_b) && ($bet->score_a == $bet->score_b)) ){
                             $bet->points = 3;
                         }
                     }
                     if (!($flag = $bet->save())) break;
                 }
-                
-                if ($model->save() && $flag) { 
+
+                if ($model->save() && $flag) {
                     $transaction->commit();
 
                     // correr el update
@@ -116,7 +117,7 @@ class MatchesController extends Controller
                         UPDATE soccer_bet AS sb SET sb.total_points = (
                         SELECT SUM(b.points) FROM bet AS b WHERE b.soccer_bet_id = sb.id)
                     ')->execute();
-                    
+
                     return $this->redirect(['index']);
                 } else {
                     $transaction->rollBack();
