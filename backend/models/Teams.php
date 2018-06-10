@@ -52,6 +52,6 @@ class Teams extends \yii\db\ActiveRecord
 
     public function getFlagimg()
     {
-        return '<img src="' . $this->flag . '" width="40" />';
+        return '<img src="' . $this->flag . '" width="40" class="hidden-xs hidden-sm" />';
     }
 }

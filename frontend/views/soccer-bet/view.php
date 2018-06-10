@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $model frontend\models\SoccerBet */
 
 $this->title = 'Folio: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mis quinielas'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mis quinielas'), 'url' => ['mybets']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="soccer-bet-view">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-9">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                'responsiveWrap' => false,
+                //'responsiveWrap' => false,
                 //'filterModel' => $searchModel,
                 'pjax' => true,
                 'columns' => [
@@ -52,6 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'match_id',
                         'value' => 'match.matchRaw',
                         'format' => 'raw',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'headerOptions' => ['class' => 'text-center']
                     ],
                     [
                         'class' => 'kartik\grid\EditableColumn',

@@ -68,11 +68,11 @@ class Matches extends \yii\db\ActiveRecord
 
     public function getMatchRaw()
     {
-        $match  = '<div class="row"><div class="col-sm-5 col-xs-12 text-right-not-xs">';
+        $match  = '<div class="row"><div class="col-xs-5 text-right-not-xs">';
         $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
-        $match .= '</div><div class="col-sm-2 col-xs-12 text-center-not-xs">';
+        $match .= '</div><div class="col-xs-2 text-center-not-xs">';
         $match .= ' ' . date("H:i", strtotime($this->date)) . ' ';
-        $match .= '</div><div class="col-sm-5 col-xs-12 text-left-not-xs">';
+        $match .= '</div><div class="col-xs-5 text-left-not-xs">';
         $match .= $this->teamNameB->flagImg . ' ' . $this->teamNameB->name;
         $match .= '</div></div>';
 
