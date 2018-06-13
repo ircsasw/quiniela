@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 $this->title = 'Quiniela World Cup';
 
 $fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
-$fecha_entrada = strtotime('13-06-2018 10:00:00');
+$fecha_entrada = strtotime('14-06-2018 10:00:00');
 //$fecha_entrada = $fecha_actual;   // comentar para bloquear
 ?>
 <div class="site-index">
