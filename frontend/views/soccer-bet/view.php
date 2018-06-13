@@ -10,7 +10,6 @@ $this->title = 'Folio: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mis quinielas'), 'url' => ['mybets']];
 $this->params['breadcrumbs'][] = $this->title;
 $fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
-$fecha_entrada = strtotime('14-06-2018 09:00:00');
 //$fecha_entrada = $fecha_actual;   // comentar para bloquear
 ?>
 <div class="soccer-bet-view">
@@ -29,27 +28,6 @@ $fecha_entrada = strtotime('14-06-2018 09:00:00');
 
         </div>
        <div class="col-lg-9">
-    <?php if ($fecha_actual >= $fecha_entrada) { ?>
-                <?= GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        //'responsiveWrap' => false,
-                        //'filterModel' => $searchModel,
-                        'pjax' => true,
-                        'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
-                            'score_a',
-                            [
-                                'attribute' => 'match_id',
-                                'value' => 'match.matchRaw',
-                                'format' => 'raw',
-                                'contentOptions' => ['class' => 'text-center'],
-                                'headerOptions' => ['class' => 'text-center']
-                            ],
-                            'score_b',
-                            'points',
-                        ],
-                    ]); ?>             
-        <?php } else { ?>
                     <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     //'responsiveWrap' => false,
@@ -61,6 +39,15 @@ $fecha_entrada = strtotime('14-06-2018 09:00:00');
                             'class' => 'kartik\grid\EditableColumn',
                             'attribute' => 'score_a',
                             'editableOptions' => [
+                                'readonly' => function($model) { 
+                                    $fecha_nueva = date('m-d-Y H:i:s',strtotime($model->date . "-1 hour"));
+                                    if ($model->date > $fecha_nueva) {
+                                        return true;
+                                    }
+                                    else{
+                                        return false;
+                                    }
+                                },
                                 'inputType' => \kartik\editable\Editable::INPUT_SPIN,
                                 'options' => ['pluginOptions' => ['min' => 0, 'max' => 50]]
                             ],
@@ -79,6 +66,15 @@ $fecha_entrada = strtotime('14-06-2018 09:00:00');
                             'class' => 'kartik\grid\EditableColumn',
                             'attribute' => 'score_b',
                             'editableOptions' => [
+                                'readonly' => function($model) { 
+                                    $fecha_nueva = date('m-d-Y H:i:s',strtotime($model->date . "-1 hour"));
+                                    if ($model->date > $fecha_nueva) {
+                                        return true;
+                                    }
+                                    else{
+                                        return false;
+                                    }
+                                },
                                 'inputType' => \kartik\editable\Editable::INPUT_SPIN,
                                 'options' => ['pluginOptions' => ['min' => 0, 'max' => 50]]
                             ],
@@ -89,7 +85,6 @@ $fecha_entrada = strtotime('14-06-2018 09:00:00');
                         'points',
                     ],
                 ]); ?>
-        <?php } ?>
     </div>
 
 </div>

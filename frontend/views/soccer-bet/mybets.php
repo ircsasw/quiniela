@@ -9,11 +9,13 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Mis quinielas');
 $this->params['breadcrumbs'][] = $this->title;
+$fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
+$fecha_entrada = strtotime('14-06-2018 09:00:00');
 ?>
 <div class="soccer-bet-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<?php if ($fecha_actual < $fecha_entrada) { ?>
     <p>
         <?= Html::a('Crear una quiniela', ['create'], [
             'class' => 'btn btn-success',
@@ -23,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <?php } else { echo " ";} ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
