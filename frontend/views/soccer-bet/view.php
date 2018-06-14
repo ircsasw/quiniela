@@ -10,7 +10,7 @@ $this->title = 'Folio: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mis quinielas'), 'url' => ['mybets']];
 $this->params['breadcrumbs'][] = $this->title;
 $fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
-$fecha_entrada = strtotime('14-06-2018 09:00:00');
+$fecha_entrada = strtotime('15-06-2018 07:00:00');
 //$fecha_entrada = $fecha_actual;   // comentar para bloquear
 $sololectura = ( ($fecha_actual >= $fecha_entrada) ? true : false );
 ?>
@@ -71,5 +71,4 @@ $sololectura = ( ($fecha_actual >= $fecha_entrada) ? true : false );
                 ],
             ]); ?>
     </div>
-
 </div>

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Mis quinielas');
 $this->params['breadcrumbs'][] = $this->title;
 $fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
-$fecha_entrada = strtotime('14-06-2018 09:00:00');
+$fecha_entrada = strtotime('15-06-2018 07:00:00');
 ?>
 <div class="soccer-bet-index">
 
@@ -42,7 +42,7 @@ $fecha_entrada = strtotime('14-06-2018 09:00:00');
                 'buttons' => [
                         'delete' => function ($url, $model) {
                             $actual_date = strtotime(date('d-m-Y H:i:00', time()));
-                            $start_date = strtotime('14-06-2018 10:00:00');
+                            $start_date = strtotime('15-06-2018 07:00:00');
                             // $start_date = $actual_date; testing de fecha actual
                             // Si la fecha actual es menor a un día antes del mundial se puede seguir borrando nuestra quiniela, una vez 24 hrs antes del mundial esta opción queda anulada para que la apuesta prosiga todo el transcurso.
                             return ($actual_date < $start_date) ? Html::a('<i class="glyphicon glyphicon-remove"></i>',
