@@ -11,7 +11,7 @@ $this->title = Yii::t('app', 'Quinielas');
 $this->params['breadcrumbs'][] = $this->title;
 
 $fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
-$fecha_entrada = strtotime('14-06-2018 9:00:00');
+$fecha_entrada = strtotime('15-06-2018 07:00:00');
 //$fecha_entrada = $fecha_actual;   // comentar para bloquear
 ?>
 <div class="soccer-bet-index">
