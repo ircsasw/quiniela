@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $model frontend\models\SoccerBet */
 
 $this->title = 'Folio: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mis quinielas'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Quinielas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="soccer-bet-view">
@@ -37,12 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
-                        'class' => 'kartik\grid\EditableColumn',
                         'attribute' => 'score_a',
-                        'editableOptions' => [
-                            'inputType' => \kartik\editable\Editable::INPUT_SPIN,
-                            'options' => ['pluginOptions' => ['min' => 0, 'max' => 50]]
-                        ],
                         'hAlign' => 'right',
                         'vAlign' => 'middle',
                         'width' => '60px',
@@ -53,12 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                     ],
                     [
-                        'class' => 'kartik\grid\EditableColumn',
                         'attribute' => 'score_b',
-                        'editableOptions' => [
-                            'inputType' => \kartik\editable\Editable::INPUT_SPIN,
-                            'options' => ['pluginOptions' => ['min' => 0, 'max' => 50]]
-                        ],
                         'hAlign' => 'left',
                         'vAlign' => 'middle',
                         'width' => '60px',
