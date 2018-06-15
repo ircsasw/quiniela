@@ -63,4 +63,22 @@ class SoccerBet extends \yii\db\ActiveRecord
         ->limit(5)
         ->all();
     }
+
+    public function getBetsTotal(){
+        return $this->find()->count();
+    }
+
+    public function getBestBet(){
+        return $this->find()
+        ->orderBy('total_points DESC')
+        ->limit(1)
+        ->all();
+    }
+
+        public function getWorstBet(){
+        return $this->find()
+        ->orderBy('total_points ASC')
+        ->limit(1)
+        ->all();
+    }
 }

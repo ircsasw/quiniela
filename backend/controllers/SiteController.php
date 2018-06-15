@@ -6,6 +6,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use frontend\models\SoccerBet;
+use common\models\User;
 
 /**
  * Site controller
@@ -60,7 +62,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $soccerBets = new SoccerBet();
+        $topFiveBets = $soccerBets->getTopFiveBets();
+        $totalBets = $soccerBets->getBetsTotal();
+        $maxBets = $soccerBets->getBestBet();
+        $minBets = $soccerBets->getWorstBet();
+        $users = new User();
+        $totalUsers = $users->getTotalUsers();
+        return $this->render('index', [
+                'topFiveBets' => $topFiveBets,
+                'totalBets' => $totalBets,
+                'maxBets' => $maxBets,
+                'minBets' => $minBets,
+                'totalUsers' => $totalUsers,
+        ]);
     }
 
     /**

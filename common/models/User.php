@@ -199,4 +199,7 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function getTotalUsers(){
+        return $this->find()->count();
+    }
 }
