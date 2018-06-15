@@ -85,7 +85,10 @@ class Matches extends \yii\db\ActiveRecord
         $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
         $match .= ' - <span class="badge badge-primary badge-pill">' . $this->score_a . '</span>';
         $match .= '</div><div class="col-xs-2 text-center">';
-        $match .= ' ' . date("H:i", strtotime($this->date)) . ' ';
+        $formatter = \Yii::$app->formatter;
+        $formatter->locale = 'es-MX'; 
+        $date = Yii::$app->formatter->asDate($this->date, 'php:D H:i:s');
+        $match .= ' ' . $date . ' ';
         $match .= '</div><div class="col-xs-5 text-left">';
         $match .= ' <span class="badge badge-primary badge-pill">' . $this->score_b . '</span> - ';
         $match .= $this->teamNameB->flagImg . ' ' . $this->teamNameB->name;
