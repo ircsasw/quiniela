@@ -25,7 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'date',
+
+            [
+                'attribute' => 'date',
+                'format' => ['date', 'php:D d, H:i']
+            ],
             'round',
             /*[
                 'attribute' => 'team_a_id',

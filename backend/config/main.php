@@ -11,6 +11,8 @@ return [
     'name' => 'Quiniela Rusia 2018',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
+    'language' => 'es-MX',
+    'sourceLanguage' => 'es-MX',
     'bootstrap' => ['log'],
     'modules' => [
         'gridview' =>  [

@@ -17,7 +17,7 @@ $this->title = 'Panel de administrador';
     </div>
 
     <div class="body-content">
-    
+
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
@@ -59,7 +59,7 @@ $this->title = 'Panel de administrador';
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
-        </div><!-- /.row --> 
+        </div><!-- /.row -->
 
         <div class="col-lg-5">
             <h2>Puntajes más altos</h2>
