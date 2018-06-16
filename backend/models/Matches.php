@@ -68,11 +68,17 @@ class Matches extends \yii\db\ActiveRecord
 
     public function getMatchRaw()
     {
-        $match  = '<div class="row"><div class="col-xs-5 text-right-not-xs">';
+        $formatter = \Yii::$app->formatter;
+        $formatter->locale = 'es-MX';
+        $date = Yii::$app->formatter->asDate($this->date, 'php:D d, H:i');
+
+        $match  = '<div class="row"><div class="col-xs-4 text-right-not-xs">';
         $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
-        $match .= '</div><div class="col-xs-2 text-center-not-xs">';
-        $match .= ' ' . date("H:i", strtotime($this->date)) . ' ';
-        $match .= '</div><div class="col-xs-5 text-left-not-xs">';
+        $match .= ' - <span class="badge badge-primary badge-pill">' . $this->score_a . '</span>';
+        $match .= '</div><div class="col-xs-4 text-center-not-xs">';
+        $match .= ' ' . $date . ' ';
+        $match .= '</div><div class="col-xs-4 text-left-not-xs">';
+        $match .= ' <span class="badge badge-primary badge-pill">' . $this->score_b . '</span> - ';
         $match .= $this->teamNameB->flagImg . ' ' . $this->teamNameB->name;
         $match .= '</div></div>';
 
@@ -81,13 +87,14 @@ class Matches extends \yii\db\ActiveRecord
 
     public function getMatchResultRaw()
     {
+        $formatter = \Yii::$app->formatter;
+        $formatter->locale = 'es-MX';
+        $date = Yii::$app->formatter->asDate($this->date, 'php:D H:i');
+
         $match  = '<div class="row"><div class="col-xs-5 text-right">';
         $match .= $this->teamNameA->name . ' ' . $this->teamNameA->flagImg;
         $match .= ' - <span class="badge badge-primary badge-pill">' . $this->score_a . '</span>';
         $match .= '</div><div class="col-xs-2 text-center">';
-        $formatter = \Yii::$app->formatter;
-        $formatter->locale = 'es-MX';
-        $date = Yii::$app->formatter->asDate($this->date, 'php:D H:i');
         $match .= ' ' . $date . ' ';
         $match .= '</div><div class="col-xs-5 text-left">';
         $match .= ' <span class="badge badge-primary badge-pill">' . $this->score_b . '</span> - ';
