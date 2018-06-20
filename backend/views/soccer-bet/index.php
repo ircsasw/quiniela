@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'total_points',
         [
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{view}',
+            'template' => '{view} {delete}',
         ],
     ],
 ]); ?>
