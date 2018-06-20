@@ -223,106 +223,27 @@ class SoccerBetController extends Controller
 
   public function actionBetPdf($id)
     {
+        $mySBets = Bet::findAll(['soccer_bet_id' => $id]);
         $model = $this->findModel($id); // Quotes
-
         $content = $this->renderPartial('_report', [
             'model' => $model,
+            'mySBets' => $mySBets,
         ]);
 
         $pdf = Yii::$app->pdf;
         // TODO: usar file_get_contents para cargar el css para cssInLine
         $pdf->cssInline = "
-    .invoice-box {
-        margin: auto;
-        border: 1px solid #eee;
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
 
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
+table, th, td {
+    font-size: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
     }
-
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
-
-    .invoice-box table tr td:nth-child(2), .invoice-box table tr td:nth-child(3), .invoice-box table tr td:nth-child(4) {
-        text-align: right;
-    }
-
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
-    }
-
-    .invoice-box table tr.information table td {
-        padding-bottom: 40px;
-    }
-
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
-
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
-
-    .invoice-box table tr.item td{
-        border-bottom: 1px solid #eee;
-    }
-
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
-
-    .invoice-box table tr.total td:nth-child(3), .invoice-box table tr.total td:nth-child(4) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
-
-    /** RTL **/
-    .rtl {
-        direction: rtl;
-        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-
-    .rtl table {
-        text-align: right;
-    }
-
-    .rtl table tr td:nth-child(2) {
-        text-align: left;
-    }
-        ";
+    th, td {
+        padding: 3px;
+    }";
         $pdf->methods = [
-            'setHeader' => null,
+            'setHeader' => ["Usuario: ".$model->user->username."| Quiniela: ".$model->id],
             'setFooter' => ['| &copy; IRCSA Software | {PAGENO}']
         ];
         $pdf->content = $content;
