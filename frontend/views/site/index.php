@@ -66,7 +66,7 @@ $fecha_entrada = strtotime('14-06-2018 10:00:00');
                 <?php
                     foreach ($topFiveBets as $topFiveBet) {
                         echo "<li class='list-group-item d-flex justify-content-between
-                        align-items-center'>".$topFiveBet->user->username." --   <i> Quiniela no.: ".$topFiveBet->id ."</i> <span class='badge badge-primary badge-pill'>".$topFiveBet->total_points."</span> </li>";
+                        align-items-center'>".$topFiveBet->user->username." <i> (# ".$topFiveBet->id .") </i> <span class='badge badge-primary badge-pill'>".$topFiveBet->total_points."</span> </li>";
                     }
                 ?>
 
