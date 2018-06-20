@@ -13,7 +13,6 @@
 </div> -->
 
 
-
 <!--
 	Diseño e iteración de los 48 partidos de la quiniela dentro del documento, averiguar la incrustación de imágenes.
 -->

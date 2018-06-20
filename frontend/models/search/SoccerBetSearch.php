@@ -50,6 +50,7 @@ class SoccerBetSearch extends SoccerBet
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['total_points' => SORT_DESC]],
         ]);
 
         $this->load($params);
