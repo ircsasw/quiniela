@@ -15,6 +15,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Teams;
 use frontend\models\SoccerBet;
+use kartik\mpdf\Pdf;
+
 
 /**
  * Site controller

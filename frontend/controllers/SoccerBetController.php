@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 use frontend\models\Bet;
 use frontend\models\search\BetSearch;
 use backend\models\Matches;
+use kartik\mpdf\Pdf;
 use yii\helpers\Json;
 
 /**
@@ -218,5 +219,35 @@ class SoccerBetController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+  public function actionBetPdf($id)
+    {
+        $mySBets = Bet::findAll(['soccer_bet_id' => $id]);
+        $model = $this->findModel($id); // Quotes
+        $content = $this->renderPartial('_report', [
+            'model' => $model,
+            'mySBets' => $mySBets,
+        ]);
+
+        $pdf = Yii::$app->pdf;
+        // TODO: usar file_get_contents para cargar el css para cssInLine
+        $pdf->cssInline = "
+
+table, th, td {
+    font-size: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 3px;
+    }";
+        $pdf->methods = [
+            'setHeader' => ["Usuario: ".$model->user->username."| Quiniela: ".$model->id],
+            'setFooter' => ['| &copy; IRCSA Software | {PAGENO}']
+        ];
+        $pdf->content = $content;
+
+        return $pdf->render();
     }
 }
