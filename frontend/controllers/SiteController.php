@@ -7,11 +7,16 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\models\MatchesSearch;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Teams;
+use frontend\models\SoccerBet;
+use kartik\mpdf\Pdf;
+
 
 /**
  * Site controller
@@ -67,12 +72,21 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
-     *
+     * 
      * @return mixed
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new MatchesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $soccerBets = new SoccerBet();
+        $topFiveBets = $soccerBets->getTopFiveBets();
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'topFiveBets' => $topFiveBets,
+        ]);
     }
 
     /**
@@ -151,9 +165,19 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+                $mailer = Yii::$app->mailer->compose();
+
+                $mailer->setFrom('quiniela@recursoscomputacionales.com');
+                $mailer->setTo('arturo@ircsasoftware.com.mx');
+                $mailer->setSubject('Usuario nuevo');
+                $mailer->setHtmlBody('Nuevo usuario en la quiniela: ' . $model->username);
+
+                if ($mailer->send())
+                    \Yii::$app->session->setFlash('success', 'Registrado correctamente. Espere a ser activado.');
+                else
+                    \Yii::$app->session->setFlash('success', 'Registrado correctamente. Contacte al administrador.');
+
+                return $this->goHome();
             }
         }
 

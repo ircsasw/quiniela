@@ -36,18 +36,25 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        ['label' => 'Acerca de', 'url' => ['/site/about']],
+        ['label' => 'Contacto', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Registrar', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
     } else {
+        $menuItems = [
+            ['label' => 'Inicio', 'url' => ['/site/index']],
+            ['label' => 'Mis quinielas', 'url' => ['/soccer-bet/mybets']],
+            ['label' => 'Quinielas', 'url' => ['/soccer-bet/index']],
+            ['label' => 'Acerca de', 'url' => ['/site/about']],
+            ['label' => 'Contacto', 'url' => ['/site/contact']],
+        ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Salir (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -72,8 +79,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">Desarrollado por <a href="http://www.ircsasoftware.com.mx">IRCSA Software</a></p>
     </div>
 </footer>
 

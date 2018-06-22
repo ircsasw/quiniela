@@ -8,11 +8,36 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'Quiniela Rusia 2018',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
+    'language' => 'es-MX',
+    'sourceLanguage' => 'es-MX',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+            // enter optional module parameters below - only if you need to
+            // use your own export download action or custom translation
+            // message source
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ]
+    ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php:d/m/Y',
+            'datetimeFormat' => 'php:d/m/Y H:i',
+            'timeFormat' => 'php:H:i:s',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ',',
+            'defaultTimeZone' => 'America/La_Paz',
+            'numberFormatterOptions' => [
+                NumberFormatter::MIN_FRACTION_DIGITS => 2,
+                NumberFormatter::MAX_FRACTION_DIGITS => 2,
+            ]
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],

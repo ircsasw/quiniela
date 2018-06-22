@@ -1,53 +1,114 @@
 <?php
 
+use yii\helpers\Html;
+use kartik\grid\GridView;
+
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Quiniela World Cup';
+
+$fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
+$fecha_entrada = strtotime('14-06-2018 10:00:00');
+//$fecha_entrada = $fecha_actual;   // comentar para bloquear
 ?>
 <div class="site-index">
 
+    <?php if (Yii::$app->user->isGuest) { ?>
+
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>¡Mundial Rusia 2018!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">Regístrate o inicia sesión para participar.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p class="btn-group">
+            <?= Html::a(Yii::t('app', 'Registro'), ['/site/signup'], ['class' => 'btn btn-lg btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Entrar'), ['/site/login'], ['class' => 'btn btn-lg btn-success']) ?>
+        </p>
     </div>
 
-    <div class="body-content">
+    <?php } else { ?>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+    <div class="jumbotron">
+        <h1>¡Mundial Rusia 2018!</h1>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+        <p class="lead">Administra y crea tus quinielas.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+        <p class="btn-group">
+            <?= Html::a(Yii::t('app', 'Mis quinielas'), ['/soccer-bet/mybets'], ['class' => 'btn btn-lg btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Quinielas'), ['/soccer-bet/index'], ['class' => 'btn btn-lg btn-success']) ?>
+        </p>
+    </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+    <div class="row">
+        <div class="col-lg-7">
+            <h2>Resultados de los partidos</h2>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'responsiveWrap' => false,
+                //'filterModel' => $searchModel,
+                'pjax' => true,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'attribute' => 'match_id',
+                        'value' => 'matchResultRaw',
+                        'format' => 'raw'
+                    ],
+                ],
+            ]); ?>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
         </div>
+        <div class="col-lg-5">
+            <h2>Puntajes más altos</h2>
+            <ul class="list-group">
+            <?php if ($fecha_actual >= $fecha_entrada) { ?>
 
+                <?php
+                    foreach ($topFiveBets as $topFiveBet) {
+                        echo "<li class='list-group-item d-flex justify-content-between
+                        align-items-center'>".$topFiveBet->user->username." <i> (# ".$topFiveBet->id .") </i> <span class='badge badge-primary badge-pill'>".$topFiveBet->total_points."</span> </li>";
+                    }
+                ?>
+
+            <?php } else { ?>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    El primero, podrías ser tu...
+                    <span class="badge badge-primary badge-pill">20</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    El segundo usuario más alto...
+                    <span class="badge badge-primary badge-pill">10</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    El tercero pero no menos importante...
+                    <span class="badge badge-primary badge-pill">5</span>
+                </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Otros más...
+                    <span class="badge badge-primary badge-pill">5</span>
+                </li>
+
+            <?php } ?>
+            </ul>
+        </div>
+        <div class="reglas col-lg-5">
+            <blockquote>
+                <p>La forma de determinar cuántos puntos gana cada quien es la siguiente:</p>
+                <ul>
+                    <li class="text-primary">
+                        El que acierte al marcador recibe <span class="badge badge-primary badge-pill">5</span> puntos
+                    </li>
+                    <li class="text-primary">
+                        El que acierte al resultado pero no al marcado se lleva <span class="badge badge-primary badge-pill">3</span> puntos
+                    </li>
+                    <li class="text-primary">El que no acierta nada no se lleva nada</li>
+                </ul>
+                <p>Al final de todos los partidos el que tenga más puntos se lleva todo el dinero, en caso de que haya empate se reparte en partes iguales entre todos los ganadores.</p>
+                <footer>Reglas del juego</footer>
+            </blockquote>
+        </div>
     </div>
+
+    <?php } ?>
 </div>

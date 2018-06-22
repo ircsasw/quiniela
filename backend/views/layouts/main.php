@@ -35,16 +35,21 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+    $menuItems = [['label' => 'Home', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = [
+            'label' => 'Entrar', 'url' => ['/site/login'],
+        ];
     } else {
+        $menuItems[] = ['label' => 'Usuarios', 'url' => ['/user/index']];
+        $menuItems[] = ['label' => 'Equipos', 'url' => ['/teams/index']];
+        $menuItems[] = ['label' => 'Partidos', 'url' => ['/matches/index']];
+        $menuItems[] = ['label' => 'Quinielas', 'url' => ['/soccer-bet/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Salir (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
