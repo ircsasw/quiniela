@@ -54,7 +54,7 @@ $this->title = 'Panel de administrador';
                 <div class="info-box-content">
                   <span class="info-box-text">Min. puntuación en quiniela</span>
                   <span class="info-box-number"><?php foreach ($minBets as $minBet) {
-                      echo "<h4>Usuario: " . $minBet->user->username . "<br> Puntos: " . $minBet->total_points. "</h4>";
+                      echo "<h4>Usuario <i>: " . $minBet->user->username . "<br> Puntos: " . $minBet->total_points. "</h4>";
                   };?></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
