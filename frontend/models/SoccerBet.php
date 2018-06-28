@@ -59,17 +59,19 @@ class SoccerBet extends \yii\db\ActiveRecord
     */   
     public function getTopFiveBets(){
        return $this->find()
+        ->where('id >= 21')
         ->orderBy('total_points DESC')
         ->limit(5)
         ->all();
     }
 
     public function getBetsTotal(){
-        return $this->find()->count();
+        return $this->find()->where('id >= 21')->count();
     }
 
     public function getBestBet(){
         return $this->find()
+        ->where('id >= 21')
         ->orderBy('total_points DESC')
         ->limit(1)
         ->all();
@@ -77,6 +79,7 @@ class SoccerBet extends \yii\db\ActiveRecord
 
         public function getWorstBet(){
         return $this->find()
+        ->where('id >= 21')
         ->orderBy('total_points ASC')
         ->limit(1)
         ->all();
