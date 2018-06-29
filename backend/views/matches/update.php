@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Matches */
 
-$this->title = 'Update Matches: ' . $model->id;
+$this->title = 'Actualizar partidos: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="matches-update">
 

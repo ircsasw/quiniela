@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Teams */
 
-$this->title = 'Create Teams';
-$this->params['breadcrumbs'][] = ['label' => 'Teams', 'url' => ['index']];
+$this->title = 'Crear equipo';
+$this->params['breadcrumbs'][] = ['label' => 'Equipos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="teams-create">
