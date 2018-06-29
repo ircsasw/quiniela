@@ -44,7 +44,7 @@ class SoccerBetSearch extends SoccerBet
     public function search($params)
     {
         $query = SoccerBet::find();
-        $query->where(['>=','soccer_bet.id',21])->orderBy('total_points DESC')->all();
+        $query->where(['>=','soccer_bet.date','2018-06-28'])->orderBy('total_points DESC')->all();
 
         // add conditions that should always apply here
         $query->joinWith(['user']);
