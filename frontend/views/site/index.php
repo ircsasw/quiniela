@@ -16,7 +16,7 @@ $fecha_entrada = strtotime('14-06-2018 10:00:00');
     <?php if (Yii::$app->user->isGuest) { ?>
 
     <div class="jumbotron">
-        <h1>¡Mundial Rusia 2018!</h1>
+        <h1>¡Mundial Rusia 2022!</h1>
 
         <p class="lead">Regístrate o inicia sesión para participar.</p>
 
@@ -29,7 +29,7 @@ $fecha_entrada = strtotime('14-06-2018 10:00:00');
     <?php } else { ?>
 
     <div class="jumbotron">
-        <h1>¡Mundial Rusia 2018!</h1>
+        <h1>¡Mundial Rusia 2022!</h1>
 
         <p class="lead">Administra y crea tus quinielas.</p>
 
@@ -45,7 +45,6 @@ $fecha_entrada = strtotime('14-06-2018 10:00:00');
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'responsiveWrap' => false,
-                //'filterModel' => $searchModel,
                 'pjax' => true,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
