@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -35,8 +36,8 @@ class LoginForm extends Model
         return [
             'username' => Yii::t('app', 'Usuario'),
             'email' => Yii::t('app', 'Correo electrónico'),
-            'password' => Yii::t('app','Contraseña'),
-            'rememberMe' => Yii::t('app','Recordarme'),
+            'password' => Yii::t('app', 'Contraseña'),
+            'rememberMe' => Yii::t('app', 'Recordarme'),
         ];
     }
 
@@ -66,18 +67,23 @@ class LoginForm extends Model
     {
         if ($this->validate() && $this->getUser()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        }else{
+        } else {
             $this->addError('password', Yii::t('app', 'No tiene acceso a esta sección'));
             return false;
         }
     }
 
-     public function loginAdmin()
+    /**
+     * If the user is validated and the user role is 20, then login the user
+     *
+     * @return void return value of the login() method is a boolean indicating whether the user is logged in
+     * or not.
+     */
+    public function loginAdmin()
     {
-        if ($this->validate() && $this->getUser()->role==20) {
+        if ($this->validate() && $this->getUser()->role == 20) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        }
-        else{
+        } else {
             $this->addError('password', Yii::t('app', 'No tiene acceso a esta sección'));
             return false;
         }

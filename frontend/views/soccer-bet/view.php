@@ -12,13 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 $fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
 $fecha_entrada = strtotime('30-06-2018 09:00:00');
 //$fecha_entrada = $fecha_actual;   // comentar para bloquear
-$sololectura = ( ($fecha_actual >= $fecha_entrada) ? true : false );
+$sololectura = false;
 ?>
 
 <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir quiniela', ['bet-pdf', 'id' => $model->id], [
-    'class'=>'btn btn-success', 
-    'target'=>'_blank', 
-    'data-toggle'=>'tooltip', 
+    'class'=>'btn btn-success',
+    'target'=>'_blank',
+    'data-toggle'=>'tooltip',
     'title'=>'Se generará un PDF listo para imprimir en otra ventana.'
 ]); ?>
 

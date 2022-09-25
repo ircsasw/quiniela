@@ -10,13 +10,12 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Quinielas');
 $this->params['breadcrumbs'][] = $this->title;
 
-$fecha_actual = strtotime(date('d-m-Y H:i:00', time()));
-$fecha_entrada = strtotime('30-06-2018 09:00:00');
+
 //$fecha_entrada = $fecha_actual;   // comentar para bloquear
 ?>
 <div class="soccer-bet-index">
 
-<?php if ($fecha_actual >= $fecha_entrada) { ?>
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= GridView::widget([
@@ -38,13 +37,12 @@ $fecha_entrada = strtotime('30-06-2018 09:00:00');
         ],
     ]); ?>
 
-<?php } else { ?>
+
 
     <div class="jumbotron">
         <p class="lead">Las quinielas de los otros participantes estarán disponibles hasta 1 hora antes del primer partido. Registra tus quinielas antes de esa fecha para que puedas participar.</p>
         <?= Html::a('Mis quinielas »', ['/soccer-bet/mybets'], ['class' => 'btn btn-lg btn-primary']) ?>
     </div>
 
-<?php } ?>
 </div>
 

@@ -3,12 +3,15 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Matches; ///Incluyo el archivo del modelo
+use backend\models\Matches;
 use backend\models\MatchesSearch;
+use backend\models\Teams;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Bet;
+use Mpdf\Tag\Select;
+use yii\helpers\ArrayHelper;
 
 /**
  * MatchesController implements the CRUD actions for Matches model.
@@ -22,7 +25,7 @@ class MatchesController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -66,6 +69,13 @@ class MatchesController extends Controller
     public function actionCreate()
     {
         $model = new Matches();
+        $model->loadDefaultValues();
+        $model->score_a = 0;
+        $model->score_b = 0;
+        $model->round = 'R16';
+
+        $teams = Teams::find()->select(['id', 'name', 'flag'])->all();
+        $teamsList = ArrayHelper::map($teams, 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -73,6 +83,7 @@ class MatchesController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'teamsList' => $teamsList
         ]);
     }
 
@@ -90,8 +101,8 @@ class MatchesController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             // SELECT * FROM bet WHERE "match_id" = $id;
             $bets = Bet::find()
-            ->where(['match_id' => $id])
-            ->all();
+                ->where(['match_id' => $id])
+                ->all();
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
@@ -100,9 +111,10 @@ class MatchesController extends Controller
                     if (($model->score_a == $bet->score_a) && ($model->score_b == $bet->score_b)) {
                         $bet->points = 5;
                     } else {
-                        if ( (($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) ||
-                             (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a)) ||
-                             (($model->score_a == $model->score_b) && ($bet->score_a == $bet->score_b)) ){
+                        if ((($model->score_a > $model->score_b) && ($bet->score_a > $bet->score_b)) ||
+                            (($model->score_b > $model->score_a) && ($bet->score_b > $bet->score_a)) ||
+                            (($model->score_a == $model->score_b) && ($bet->score_a == $bet->score_b))
+                        ) {
                             $bet->points = 3;
                         }
                     }

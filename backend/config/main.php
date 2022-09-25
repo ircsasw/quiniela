@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'name' => 'Quiniela Qatar 2022',
+    'name' => 'Quiniela Qatar',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'language' => 'es-MX',

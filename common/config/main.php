@@ -1,6 +1,7 @@
 <?php
 use kartik\mpdf\Pdf;
 return [
+    'timeZone' => 'America/Cancun',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -11,7 +12,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'pdf' => [
-            'class' => Pdf::classname(),
+            'class' => Pdf::class,
             'format' => Pdf::FORMAT_LETTER,
             'orientation' => Pdf::ORIENT_PORTRAIT,
             'destination' => Pdf::DEST_BROWSER,

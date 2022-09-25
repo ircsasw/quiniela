@@ -13,10 +13,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use frontend\models\Teams;
 use frontend\models\SoccerBet;
-use kartik\mpdf\Pdf;
-
+use InvalidArgumentException;
 
 /**
  * Site controller
@@ -30,7 +28,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
@@ -46,7 +44,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -72,14 +70,14 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
-     * 
+     *
      * @return mixed
      */
     public function actionIndex()
     {
         $searchModel = new MatchesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
+
         $soccerBets = new SoccerBet();
         $topFiveBets = $soccerBets->getTopFiveBets();
         return $this->render('index', [
@@ -220,7 +218,7 @@ class SiteController extends Controller
     {
         try {
             $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
+        } catch (InvalidArgumentException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
 

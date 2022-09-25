@@ -137,7 +137,7 @@ class SoccerBetController extends Controller
             $model->user_id = Yii::$app->user->identity->id;
 
             if ($flag = $model->save()) {
-                $matches = Matches::find()->where('id >= 49 AND id <= 56')->all();
+                $matches = Matches::find()->where('id < 49')->all();
 
                 foreach ($matches as $match) {
                     $bet = new Bet();
