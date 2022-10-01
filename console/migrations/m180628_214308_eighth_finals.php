@@ -12,7 +12,7 @@ class m180628_214308_eighth_finals extends Migration
      */
      public function safeUp()
     {
-        $this->execute(file_get_contents(Yii::getAlias('console/migrations/sql/m180628_214308.sql')));
+        $this->execute(file_get_contents(Yii::getAlias('@console/migrations/sql/m180628_214308.sql')));
     }
 
     /**

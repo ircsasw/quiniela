@@ -12,7 +12,7 @@ class m180503_000941_role extends Migration
      */
     public function safeUp()
     {
-        $this->execute(file_get_contents(Yii::getAlias('console/migrations/sql/m180503_000941.sql')));
+        $this->execute(file_get_contents(Yii::getAlias('@console/migrations/sql/m180503_000941.sql')));
     }
 
     /**

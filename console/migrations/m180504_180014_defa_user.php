@@ -12,7 +12,7 @@ class m180504_180014_defa_user extends Migration
      */
     public function safeUp()
     {
-        $this->execute(file_get_contents(Yii::getAlias('console/migrations/sql/m180504_180014.sql')));
+        $this->execute(file_get_contents(Yii::getAlias('@console/migrations/sql/m180504_180014.sql')));
     }
 
     /**

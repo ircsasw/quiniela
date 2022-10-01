@@ -12,7 +12,7 @@ class m180427_162001_tbl_init extends Migration
      */
     public function safeUp()
     {
-        $this->execute(file_get_contents(Yii::getAlias('console/migrations/sql/m180427_162001.sql')));
+        $this->execute(file_get_contents(Yii::getAlias('@console/migrations/sql/m180427_162001.sql')));
     }
 
     /**
