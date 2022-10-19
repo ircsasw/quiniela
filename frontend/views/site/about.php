@@ -1,8 +1,6 @@
 <?php
 
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
+/** @var yii\web\View $this */
 
 $this->title = 'Acerca de';
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,7 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                         <div class="timeline-body">
                             <p class="text-muted">
-                                Desde hace más de 15 años nos dedicamos al análisis, diseño y desarrollo de aplicaciones web, de escritorio y sitios web para la pequeña y mediana empresa así como a la consultoría, asistencia y capacitación en los recursos informáticos.
+                                Desde hace más de 20 años nos dedicamos al análisis, diseño y desarrollo de aplicaciones
+                                web, de escritorio y sitios web para la pequeña y mediana empresa así como a la
+                                consultoría, asistencia y capacitación en los recursos informáticos.
                             </p>
                         </div>
                     </div>
@@ -42,7 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                         <div class="timeline-body">
                             <p class="text-muted">
-                            Crear soluciones integrales que ayuden a nuestros clientes a mejorar: el flujo de su información, la automatización y la gestión de sus servicios satisfaciendo sus necesidades.</p>
+                            Crear soluciones integrales que ayuden a nuestros clientes a mejorar: el flujo de su
+                            información, la automatización y la gestión de sus servicios satisfaciendo sus necesidades.</p>
                         </div>
                     </div>
                     <div class="line"></div>
@@ -57,7 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                         <div class="timeline-body">
                             <p class="text-muted">
-                            Ser la empresa elegida por sus servicios, soluciones y productos innovadores. Que nuestros clientes se sientan seguros de confiarnos sus necesidades por el trato profesional y la calidad humana de nuestra gente; y que éstos se sientan motivados a participar en el desarrollo de la empresa contribuyendo al crecimiento de nuestra comunidad.</p>
+                            Ser la empresa elegida por sus servicios, soluciones y productos innovadores.
+                            Que nuestros clientes se sientan seguros de confiarnos sus necesidades por el trato
+                            profesional y la calidad humana de nuestra gente; y que éstos se sientan motivados a
+                            participar en el desarrollo de la empresa contribuyendo al crecimiento de nuestra comunidad.</p>
                         </div>
                     </div>
                 </li>
