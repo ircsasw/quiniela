@@ -38,3 +38,5 @@ phpunit.phar
 /index.php
 /index-test.php
 /robots.txt
+
+composer.lock
